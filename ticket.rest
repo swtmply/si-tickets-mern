@@ -1,0 +1,19 @@
+GET http://localhost:3000/api/tickets
+
+###
+
+GET http://localhost:3000/api/tickets/5ff951c59f62201e941476c3
+
+###
+
+POST http://localhost:3000/api/tickets/create/5fa643aa89ba491ea4ad9658
+Content-Type: application/json
+
+{
+    "movie": "Avengers",
+    "date": "Bukas",
+    "time": "alas dose",
+    "seats": "A1, A2"
+}
+
+# movieId: 5ff951c59f62201e941476c3

@@ -1,0 +1,46 @@
+GET http://localhost:3000/api/users
+
+###
+
+GET http://localhost:3000/api/users/:id
+
+###
+
+GET http://localhost:3000/api/users/:id/tickets
+
+###
+
+POST http://localhost:3000/api/users/create
+Content-Type: application/json
+
+{
+    "name": "test70",
+    "username": "test70",
+    "contact": "12345678911",
+    "email": "test70@gmail.com",
+    "password": "12345678"
+}
+
+###
+
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "username": "test70",
+    "password": "123456789"
+}
+
+###
+
+PUT http://localhost:3000/api/users/:id/update
+Content-Type: application/json
+
+{
+    "password": "123456789",
+    "password1": "123456789"
+}
+
+###
+
+DELETE http://localhost:3000/api/users/:id/delete

@@ -1,0 +1,10 @@
+GET http://localhost:3000/api/movies/5fb82e38adb57735c86badbd
+
+###
+
+POST http://localhost:3000/api/movies/5fb82e38adb57735c86badbd/seat
+Content-Type: application/json
+
+{
+    "seats": [3, 4, 9]
+}
