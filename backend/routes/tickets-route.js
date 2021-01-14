@@ -29,6 +29,7 @@ router.get("/:id", async (req, res) => {
 // add tickets
 router.post("/create/:userId", async (req, res) => {
   try {
+    // TODO: documentation
     const user = await User.findById(req.params.userId);
     const ticket = await Ticket.create(req.body);
 

@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import useForm from "../../hooks/useForm";
 import { validateMovie } from "../../utils/FormValidation";
 
-const MovieForm = ({ match, path }) => {
+const MovieForm = ({ match }) => {
   const { id } = match.params;
   const [image, setImagePreview] = useState();
 
@@ -25,7 +25,6 @@ const MovieForm = ({ match, path }) => {
   useEffect(() => {
     if (data) {
       setValues(data);
-      console.log(data.imageURL);
     }
   }, [data]);
 

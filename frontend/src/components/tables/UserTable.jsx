@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const UserTable = () => {
   const { data, isLoading, error } = useQuery("contents", async () => {
@@ -53,8 +54,16 @@ const UserTable = () => {
               <p>{user.role}</p>
             </div>
             <div className="column">
-              <button>edit</button>
-              <button>delete</button>
+              <Link to={`/dashboard/user/${user._id}`}>
+                <button>edit</button>
+              </Link>
+              <button
+                onClick={async () => {
+                  await axios.delete(`/api/users/${user._id}/delete`);
+                }}
+              >
+                delete
+              </button>
             </div>
           </div>
         ))}

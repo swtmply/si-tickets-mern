@@ -2,10 +2,10 @@ import React from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import useForm from "../hooks/useForm";
-import { validateRegister } from "../utils/FormValidation";
+import useForm from "../../hooks/useForm";
+import { validateRegister } from "../../utils/FormValidation";
 
-const Register = () => {
+const UserCreateForm = () => {
   const { errors, setErrors, handleChange, handleSubmit } = useForm(
     register,
     validateRegister
@@ -100,13 +100,11 @@ const Register = () => {
           )}
         </div>
         <div className="form-field">
-          <button className="primary" type="submit">
-            Register
-          </button>
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default Register;
+export default UserCreateForm;

@@ -1,0 +1,12 @@
+.card {
+  padding: 20px;
+  margin: 20px 0;
+  max-width: 240px;
+
+  border: 2px solid $black;
+  border-radius: 16px;
+
+  & > * {
+    margin: 10px 0;
+  }
+}

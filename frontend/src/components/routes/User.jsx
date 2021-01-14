@@ -17,9 +17,10 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 
   return (
     <Route
-      render={() => {
-        if (data.role === "user") {
-          return <Component {...rest} />;
+      {...rest}
+      render={(props) => {
+        if (data.role) {
+          return <Component {...props} />;
         } else {
           return <Redirect to="/" />;
         }

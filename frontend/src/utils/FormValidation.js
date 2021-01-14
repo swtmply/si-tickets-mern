@@ -9,6 +9,53 @@ export const validateLogin = (values) => {
   return errors;
 };
 
+export const validateRegister = (values) => {
+  let errors = {};
+
+  if (!values.username) {
+    errors.username = "Username is required";
+  }
+  if (!values.email) {
+    errors.email = "Email is required";
+  }
+  if (!values.contact) {
+    errors.contact = "Contact is required";
+  }
+  if (!values.password) {
+    errors.password = "Password is required";
+  }
+  if (!values.name) {
+    errors.name = "Name is required";
+  }
+  if (!values.password1) {
+    errors.password1 = "Confirm Password is required";
+  }
+
+  return errors;
+};
+
+export const validateEditUser = (values) => {
+  let errors = {};
+
+  if (!values.username) {
+    errors.username = "Username is required";
+  }
+  if (!values.email) {
+    errors.email = "Email is required";
+  }
+  if (!values.contact) {
+    errors.contact = "Contact is required";
+  }
+  if (!values.password) {
+    errors.password = "Password is required";
+  }
+  if (!values.name) {
+    errors.name = "Name is required";
+  }
+
+  return errors;
+};
+
 export const validateMovie = (values) => {
   let errors = {};
   if (!values.title) {

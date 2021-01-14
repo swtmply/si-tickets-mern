@@ -1,0 +1,39 @@
+.home {
+  background-color: $black;
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: $white;
+}
+
+.hero {
+  width: 930px;
+
+  &-info {
+    height: 250px;
+    width: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.container {
+  margin: 50px 0;
+
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movies {
+  width: 930px;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

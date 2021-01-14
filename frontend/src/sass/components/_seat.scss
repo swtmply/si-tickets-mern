@@ -1,0 +1,67 @@
+.seat-container {
+  width: 930px;
+
+  display: flex;
+
+  .seats {
+    width: 30%;
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: 50px;
+  }
+
+  .seat {
+    margin: 2px;
+
+    width: 50px;
+
+    background: #6f6f6f;
+    border-radius: 15px 15px 0px 0px;
+
+    color: $white;
+
+    &:disabled {
+      background: $cherry;
+    }
+  }
+}
+
+.cinema {
+  width: 930px;
+
+  .legend {
+    margin: 20px 0;
+
+    & > * {
+      color: $white;
+      margin-right: 20px;
+      padding: 10px 20px;
+      background: #6f6f6f;
+      border-radius: 15px 15px 0px 0px;
+    }
+  }
+}
+
+.tickets-container {
+  width: 930px;
+
+  .flex {
+    display: flex;
+    align-items: center;
+
+    & > * {
+      margin-right: 5px;
+    }
+  }
+
+  .tickets {
+    display: flex;
+    width: 250px;
+
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid $black;
+    padding: 0 10px;
+    margin: 10px 0;
+  }
+}

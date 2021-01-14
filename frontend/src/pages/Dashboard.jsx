@@ -1,16 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import MovieTable from "../components/tables/MovieTable";
-// import UserTable from "../components/tables/UserTable";
-
-const Dashboard = () => {
+const Dashboard = ({ children }) => {
   return (
     <div>
-      <Link to="/dashboard/create/movie">
-        <button>New Movie</button>
-      </Link>
-      <MovieTable />
+      <Link to="/dashboard/users">Users</Link>
+      <Link to="/dashboard/movies">Movies</Link>
+      {children}
     </div>
   );
 };
