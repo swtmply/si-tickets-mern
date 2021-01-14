@@ -5,6 +5,7 @@
 @import "./components/nav";
 @import "./components/card";
 @import "./components/seat";
+@import "./components/ticket";
 
 @import "./pages/landing";
 @import "./pages/home";
@@ -163,4 +164,9 @@ pre {
 
 .link {
   color: $black;
+}
+
+.close {
+  position: relative;
+  left: 90%;
 }

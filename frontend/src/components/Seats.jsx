@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
+import Modal from "./Modal";
+
 const SELECTED = {
   background: "#1f1f1f",
 };
@@ -9,6 +11,7 @@ const SELECTED = {
 const Seats = ({ id, occupied, price }) => {
   // TODO: post ticket to user
   const [seats, setSeats] = useState([]);
+  const [modal, setModal] = useState(false);
   const history = useHistory();
 
   const checkDisabled = (index) => {
@@ -108,11 +111,48 @@ const Seats = ({ id, occupied, price }) => {
       </div>
       <div className="container">
         <div className="button-container">
-          <button className="primary" onClick={checkout}>
+          <button className="primary" onClick={() => setModal(true)}>
             Checkout
           </button>
         </div>
       </div>
+
+      <Modal isOpen={modal} isClose={() => setModal(false)}>
+        <div className="ticket-info">
+          <div className="ticket-title">
+            <div className="title">
+              <p className="pre-title">Ordered</p>
+              <h3>Seats</h3>
+            </div>
+          </div>
+          <div className="tickets">
+            {seats.map((s, i) => {
+              return (
+                <p className="strong" key={i}>
+                  Seat {s}
+                </p>
+              );
+            })}
+          </div>
+
+          {seats.map((s, i) => {
+            if (i === seats.length - 1)
+              return (
+                <div className="ticket-title">
+                  <div className="title">
+                    <p className="pre-title">Total</p>
+                    <h3>Price: </h3>
+                  </div>
+
+                  <h2 className="price">{price * seats.length}</h2>
+                </div>
+              );
+          })}
+          <button className="primary" onClick={checkout}>
+            Checkout
+          </button>
+        </div>
+      </Modal>
     </>
   );
 };
