@@ -37,7 +37,7 @@ const UserCreateForm = ({ match }) => {
         .put(`/api/users/${data._id}/update`, values)
         .then((res) => res.data);
 
-      if (response) history.push("/home");
+      if (response) history.push("/dashboard/users");
     } catch (error) {
       setErrors(error.response.data);
     }
@@ -64,7 +64,7 @@ const UserCreateForm = ({ match }) => {
                   type="text"
                   name="name"
                   className="form-input"
-                  value={values.name}
+                  value={values.name || ""}
                 />
                 {(errors.name || errors.message) && (
                   <pre>{errors.name || errors.message}</pre>
@@ -77,7 +77,7 @@ const UserCreateForm = ({ match }) => {
                   type="text"
                   name="username"
                   className="form-input"
-                  value={values.username}
+                  value={values.username || ""}
                 />
                 {(errors.username || errors.message) && (
                   <pre>{errors.username || errors.message}</pre>
@@ -92,7 +92,7 @@ const UserCreateForm = ({ match }) => {
                   type="text"
                   name="email"
                   className="form-input"
-                  value={values.email}
+                  value={values.email || ""}
                 />
                 {(errors.email || errors.message) && (
                   <pre>{errors.email || errors.message}</pre>
@@ -105,7 +105,7 @@ const UserCreateForm = ({ match }) => {
                   type="text"
                   name="contact"
                   className="form-input"
-                  value={values.contact}
+                  value={values.contact || ""}
                 />
                 {(errors.contact || errors.message) && (
                   <pre>{errors.contact || errors.message}</pre>
@@ -120,7 +120,7 @@ const UserCreateForm = ({ match }) => {
                   type="password"
                   name="password"
                   className="form-input"
-                  value={values.password}
+                  value={values.password || ""}
                 />
                 {(errors.password || errors.message) && (
                   <pre>{errors.password || errors.message}</pre>
@@ -141,9 +141,14 @@ const UserCreateForm = ({ match }) => {
             </div>
             <div className="form-field">
               <label className="form-label">Role</label>
-              <select defaultValue={values.role} name="role">
+              <select
+                value={values.role || "user"}
+                onChange={handleChange}
+                name="role"
+              >
+                <option value="">Role</option>
                 <option value="admin">Admin</option>
-                <option value="Role">Role</option>
+                <option value="user">User</option>
               </select>
             </div>
             <div className="form-field">

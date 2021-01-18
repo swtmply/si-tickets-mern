@@ -3,12 +3,11 @@
   height: 100%;
   width: 100vw;
   display: flex;
-  align-items: center;
 
   color: $white;
 
   &-menu {
-    height: 100%;
+    padding-top: 50px;
     width: 20%;
     background-color: $white;
   }
@@ -58,5 +57,6 @@
   .btn {
     width: 100%;
     padding: 0 20px;
+    margin: 20px 0;
   }
 }

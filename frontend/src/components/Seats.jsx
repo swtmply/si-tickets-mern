@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
+import decode from "jwt-decode";
+import moment from "moment";
 
 import Modal from "./Modal";
+import useUser from "../hooks/useUser";
 
 const SELECTED = {
   background: "#1f1f1f",
 };
 
-const Seats = ({ id, occupied, price }) => {
+const Seats = ({ id: ID, occupied, price, name }) => {
   // TODO: post ticket to user
   const [seats, setSeats] = useState([]);
   const [modal, setModal] = useState(false);
   const history = useHistory();
+
+  const { data: user, isLoading, error } = useUser();
 
   const checkDisabled = (index) => {
     if (occupied.find((v) => v === index)) return true;
@@ -36,12 +42,28 @@ const Seats = ({ id, occupied, price }) => {
 
   const checkout = async () => {
     try {
-      const response = await axios.post(`/api/movies/${id}/seat`, { seats });
-      if (response) history.push("/home");
+      const data = await axios
+        .post(`/api/tickets/create/${user._id}`, {
+          seats,
+          movie: name,
+          date: moment(Date.now()).format("MM/DD/YYYY"),
+          time: "1:00PM",
+        })
+        .then((res) => res.data);
+
+      if (data) {
+        const response = await axios.post(`/api/movies/${ID}/seat`, {
+          seats,
+        });
+        if (response) history.push("/home");
+      }
     } catch (error) {
       console.log(error.response.data);
     }
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <>

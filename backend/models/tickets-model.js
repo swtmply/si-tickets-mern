@@ -6,7 +6,7 @@ const ticketSchema = new Schema(
     movie: String,
     date: String,
     time: String,
-    seats: String,
+    seats: [String],
   },
   { timestamps: true }
 );

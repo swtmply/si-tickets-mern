@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Movie from "./pages/Movie";
 import UsersPage from "./pages/admin/Users";
 import MoviesPage from "./pages/admin/Movies";
+import Tickets from "./pages/Tickets";
 
 //components
 import AdminRoute from "./components/routes/Admin";
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <UserRoute exact path="/home" component={Home} />
         <UserRoute exact path="/movies" component={Movies} />
+        <UserRoute exact path="/tickets" component={Tickets} />
         <UserRoute exact path="/movie/:id" component={Movie} />
         <AdminRoute exact path="/dashboard" component={Dashboard} />
         <AdminRoute

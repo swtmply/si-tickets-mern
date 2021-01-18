@@ -13,7 +13,9 @@ const Nav = () => {
           <Link to="/movies">
             <button>movies</button>
           </Link>
-          <button>tickets</button>
+          <Link to="/tickets">
+            <button>tickets</button>
+          </Link>
           <Link to="/">
             <button>logout</button>
           </Link>

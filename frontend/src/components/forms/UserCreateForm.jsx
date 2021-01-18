@@ -112,8 +112,9 @@ const UserCreateForm = () => {
           <label className="form-label">Role</label>
           <select name="role">
             <option value="">Select Role</option>
+            <option value="user">Role</option>
+            <option value="user">User</option>
             <option value="admin">Admin</option>
-            <option value="Role">Role</option>
           </select>
         </div>
         <div className="form-field">

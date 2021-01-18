@@ -16,6 +16,7 @@ const MovieForm = () => {
     handleSubmit,
     errors,
     setErrors,
+    isSubmitting,
   } = useForm(submitForm, validateMovie);
 
   // file handling
@@ -37,8 +38,6 @@ const MovieForm = () => {
         .then((res) => res.data);
 
       values.imageURL = imageURL.url;
-
-      console.log(values);
 
       await axios.post("/api/movies/create", values).then((res) => res.data);
 
@@ -193,7 +192,13 @@ const MovieForm = () => {
           {errors.imageURL && <pre>{errors.imageURL}</pre>}
         </div>
         <div className="form-field">
-          <button type="submit">Submit</button>
+          <button
+            className="primary createBtn"
+            disabled={isSubmitting}
+            type="submit"
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>
