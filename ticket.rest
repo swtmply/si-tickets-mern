@@ -2,7 +2,7 @@ GET http://localhost:3000/api/tickets
 
 ###
 
-GET http://localhost:3000/api/tickets/5ff951c59f62201e941476c3
+GET http://localhost:3000/api/tickets/5fa643aa89ba491ea4ad9658
 
 ###
 
@@ -15,5 +15,9 @@ Content-Type: application/json
     "time": "alas dose",
     "seats": "A1, A2"
 }
+
+### 
+
+POST  http://localhost:3000/api/tickets/5fa643aa89ba491ea4ad9658/5ff951c59f62201e941476c3
 
 # movieId: 5ff951c59f62201e941476c3

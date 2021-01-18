@@ -78,7 +78,12 @@ const Movie = ({ match }) => {
           </div>
         </div>
       </div>
-      <Seats id={data._id} price={data.price} occupied={data.occupied} />
+      <Seats
+        id={data._id}
+        price={data.price}
+        occupied={data.occupied}
+        name={data.title}
+      />
     </>
   );
 };

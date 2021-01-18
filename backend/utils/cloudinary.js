@@ -10,3 +10,6 @@ cloudinary.config({
 });
 
 export { cloudinary };
+
+
+// cloudinary config for image upload

@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 
+// create schema for movie
 const movieSchema = new Schema(
   {
     title: String,
@@ -19,4 +20,5 @@ const movieSchema = new Schema(
   { timestamps: true }
 );
 
+// export schema as mongoose model
 export default model("Movie", movieSchema);

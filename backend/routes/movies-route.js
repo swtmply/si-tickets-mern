@@ -41,6 +41,25 @@ router.post("/:id/seat", async (req, res) => {
   }
 });
 
+//remove seat
+router.post("/:id/remove/seat", async (req, res) => {
+  try {
+    const movie = await Movie.findOneAndUpdate(
+      { title: req.params.id },
+      {
+        $pullAll: { occupied: req.body.seats },
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.json(movie);
+  } catch (error) {
+    res.status(500).json({ message: `${error}` });
+  }
+});
+
 // upload photo
 router.post("/upload", async (req, res) => {
   try {

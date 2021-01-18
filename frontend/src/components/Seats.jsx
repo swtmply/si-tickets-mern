@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
+import decode from "jwt-decode";
+import moment from "moment";
 
 import Modal from "./Modal";
+import useUser from "../hooks/useUser";
 
 const SELECTED = {
   background: "#1f1f1f",
 };
 
-const Seats = ({ id, occupied, price }) => {
+const Seats = ({ id: ID, occupied, price, name }) => {
   // TODO: post ticket to user
   const [seats, setSeats] = useState([]);
   const [modal, setModal] = useState(false);
   const history = useHistory();
+
+  const { data: user, isLoading, error } = useUser();
 
   const checkDisabled = (index) => {
     if (occupied.find((v) => v === index)) return true;
@@ -36,12 +42,28 @@ const Seats = ({ id, occupied, price }) => {
 
   const checkout = async () => {
     try {
-      const response = await axios.post(`/api/movies/${id}/seat`, { seats });
-      if (response) history.push("/home");
+      const data = await axios
+        .post(`/api/tickets/create/${user._id}`, {
+          seats,
+          movie: name,
+          date: moment(Date.now()).format("MM/DD/YYYY"),
+          time: "1:00PM",
+        })
+        .then((res) => res.data);
+
+      if (data) {
+        const response = await axios.post(`/api/movies/${ID}/seat`, {
+          seats,
+        });
+        if (response) history.push("/home");
+      }
     } catch (error) {
       console.log(error.response.data);
     }
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <>
@@ -53,11 +75,11 @@ const Seats = ({ id, occupied, price }) => {
                 <div key={index}>
                   <button
                     onClick={() => {
-                      onSelect(index);
+                      onSelect(index + 1);
                     }}
-                    disabled={checkDisabled(index)}
+                    disabled={checkDisabled(index + 1)}
                     className="seat"
-                    style={checkSelect(index)}
+                    style={checkSelect(index + 1)}
                   >
                     {index + 1}
                   </button>
@@ -70,10 +92,10 @@ const Seats = ({ id, occupied, price }) => {
               return (
                 <div key={index + 15}>
                   <button
-                    onClick={() => onSelect(index + 15)}
-                    disabled={checkDisabled(index + 15)}
+                    onClick={() => onSelect(index + 16)}
+                    disabled={checkDisabled(index + 16)}
                     className="seat"
-                    style={checkSelect(index + 15)}
+                    style={checkSelect(index + 16)}
                   >
                     {index + 16}
                   </button>
@@ -93,7 +115,7 @@ const Seats = ({ id, occupied, price }) => {
             <div className="tickets" key={index}>
               <div className="flex">
                 <p className="strong">Seat </p>
-                <h3>{seat + 1}</h3>
+                <h3>{seat}</h3>
               </div>
 
               <p className="strong">Php {price}</p>
@@ -148,7 +170,11 @@ const Seats = ({ id, occupied, price }) => {
                 </div>
               );
           })}
-          <button className="primary" onClick={checkout}>
+          <button
+            disabled={seats.length === 0 ? true : false}
+            className="primary"
+            onClick={checkout}
+          >
             Checkout
           </button>
         </div>

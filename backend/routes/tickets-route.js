@@ -39,7 +39,22 @@ router.post("/create/:userId", async (req, res) => {
 
     res.json(ticket);
   } catch (error) {
-    return res.status(500).json({ message: "Something went wrong" });
+    return res.status(500).json({ message: `${error}` });
+  }
+});
+// TODO: documentation
+router.post("/:userId/:ticketId", async (req, res) => {
+  try {
+    // TODO:
+    const user = await User.findById(req.params.userId);
+
+    await user.update({
+      $pull: { tickets: req.params.ticketId },
+    });
+
+    res.json({ data: {} });
+  } catch (error) {
+    return res.status(500).json({ message: `${error}` });
   }
 });
 

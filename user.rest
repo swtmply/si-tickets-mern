@@ -6,7 +6,7 @@ GET http://localhost:3000/api/users/:id
 
 ###
 
-GET http://localhost:3000/api/users/:id/tickets
+GET http://localhost:3000/api/users/5fa643aa89ba491ea4ad9658/tickets
 
 ###
 

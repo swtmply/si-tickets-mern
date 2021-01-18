@@ -9,12 +9,30 @@ const Movies = () => {
 
   return (
     <Dashboard>
-      <h2>Movies Page</h2>
+      <div className="dashboard-title">
+        <h2>Movies Page</h2>
+      </div>
 
-      <button onClick={() => setComponent(0)}>Movies List</button>
-      <button onClick={() => setComponent(1)}>Add New User</button>
+      <div className="dashboard-button">
+        <div className="buttons">
+          <button
+            className={component === 0 ? "primary" : "outline-primary"}
+            onClick={() => setComponent(0)}
+          >
+            Movies List
+          </button>
+          <button
+            className={component === 1 ? "primary" : "outline-primary"}
+            onClick={() => setComponent(1)}
+          >
+            Add New Movie
+          </button>
+        </div>
+      </div>
 
-      {component ? <MovieForm /> : <MovieTable />}
+      <div className="dashboard-component">
+        {component ? <MovieForm /> : <MovieTable />}
+      </div>
     </Dashboard>
   );
 };
