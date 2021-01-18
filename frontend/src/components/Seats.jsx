@@ -53,11 +53,11 @@ const Seats = ({ id, occupied, price }) => {
                 <div key={index}>
                   <button
                     onClick={() => {
-                      onSelect(index);
+                      onSelect(index + 1);
                     }}
-                    disabled={checkDisabled(index)}
+                    disabled={checkDisabled(index + 1)}
                     className="seat"
-                    style={checkSelect(index)}
+                    style={checkSelect(index + 1)}
                   >
                     {index + 1}
                   </button>
@@ -70,10 +70,10 @@ const Seats = ({ id, occupied, price }) => {
               return (
                 <div key={index + 15}>
                   <button
-                    onClick={() => onSelect(index + 15)}
-                    disabled={checkDisabled(index + 15)}
+                    onClick={() => onSelect(index + 16)}
+                    disabled={checkDisabled(index + 16)}
                     className="seat"
-                    style={checkSelect(index + 15)}
+                    style={checkSelect(index + 16)}
                   >
                     {index + 16}
                   </button>
@@ -93,7 +93,7 @@ const Seats = ({ id, occupied, price }) => {
             <div className="tickets" key={index}>
               <div className="flex">
                 <p className="strong">Seat </p>
-                <h3>{seat + 1}</h3>
+                <h3>{seat}</h3>
               </div>
 
               <p className="strong">Php {price}</p>
@@ -148,7 +148,11 @@ const Seats = ({ id, occupied, price }) => {
                 </div>
               );
           })}
-          <button className="primary" onClick={checkout}>
+          <button
+            disabled={seats.length === 0 ? true : false}
+            className="primary"
+            onClick={checkout}
+          >
             Checkout
           </button>
         </div>

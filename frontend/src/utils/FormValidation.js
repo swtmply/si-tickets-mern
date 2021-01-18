@@ -1,3 +1,5 @@
+// check if values are valid for the form to use
+
 export const validateLogin = (values) => {
   let errors = {};
   if (!values.username) {

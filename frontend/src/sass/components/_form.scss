@@ -1,0 +1,21 @@
+.form-group {
+  width: 100%;
+  display: flex;
+
+  & > * {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    margin-bottom: 10px;
+  }
+
+  .form-field {
+    height: 50%;
+  }
+}
+
+.admin-form {
+  margin: 50px 0;
+}

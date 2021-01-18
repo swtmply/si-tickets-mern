@@ -49,8 +49,8 @@ const MovieForm = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="admin-form">
+      <form onSubmit={handleSubmit} className="form">
         <div className="form-field">
           <label className="form-label">Title</label>
           <input
@@ -72,113 +72,124 @@ const MovieForm = () => {
           />
           {errors.description && <pre>{errors.description}</pre>}
         </div>
-        <div className="form-field">
-          <label className="form-label">Director</label>
-          <input
-            type="text"
-            name="director"
-            onChange={handleChange}
-            value={values.director || ""}
-            className="form-input"
-          />
-          {errors.director && <pre>{errors.director}</pre>}
+        <div className="form-group">
+          <div className="form-field">
+            <label className="form-label">Director</label>
+            <input
+              type="text"
+              name="director"
+              onChange={handleChange}
+              value={values.director || ""}
+              className="form-input"
+            />
+            {errors.director && <pre>{errors.director}</pre>}
+          </div>
+          <div className="form-field">
+            <label className="form-label">Casts</label>
+            <input
+              type="text"
+              name="casts"
+              value={values.casts || ""}
+              onChange={handleChange}
+              className="form-input"
+            />
+            {errors.casts && <pre>{errors.casts}</pre>}
+          </div>
         </div>
-        <div className="form-field">
-          <label className="form-label">casts</label>
-          <input
-            type="text"
-            name="casts"
-            value={values.casts || ""}
-            onChange={handleChange}
-            className="form-input"
-          />
-          {errors.casts && <pre>{errors.casts}</pre>}
+        <div className="form-group">
+          <div className="form-field">
+            <label className="form-label">Price</label>
+            <input
+              type="text"
+              name="price"
+              onChange={(e) => {
+                setValues({ ...values, price: Number(e.target.value) });
+              }}
+              value={values.price || ""}
+              className="form-input"
+            />
+            {errors.price && <pre>{errors.price}</pre>}
+          </div>
+          <div className="form-field">
+            <label className="form-label">Category</label>
+            <input
+              type="text"
+              name="category"
+              onChange={handleChange}
+              className="form-input"
+              value={values.category || ""}
+            />
+            {errors.category && <pre>{errors.category}</pre>}
+          </div>
         </div>
-        <div className="form-field">
-          <label className="form-label">price</label>
-          <input
-            type="text"
-            name="price"
-            onChange={(e) => {
-              setValues({ ...values, price: Number(e.target.value) });
-            }}
-            value={values.price || ""}
-            className="form-input"
-          />
-          {errors.price && <pre>{errors.price}</pre>}
+        <div className="form-group">
+          <div className="form-field">
+            <label className="form-label">Cinema</label>
+            <select
+              name="cinema"
+              onChange={(e) => {
+                setValues({ ...values, cinema: e.target.value });
+              }}
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+            </select>
+            {errors.cinema && <pre>{errors.cinema}</pre>}
+          </div>
+          <div className="form-field">
+            <label className="form-label">Movie Duration</label>
+            <input
+              type="text"
+              name="movieDuration"
+              onChange={handleChange}
+              className="form-input"
+              value={values.movieDuration || ""}
+            />
+            {errors.movieDuration && <pre>{errors.movieDuration}</pre>}
+          </div>
         </div>
-        <div className="form-field">
-          <label className="form-label">category</label>
-          <input
-            type="text"
-            name="category"
-            onChange={handleChange}
-            className="form-input"
-            value={values.category || ""}
-          />
-          {errors.category && <pre>{errors.category}</pre>}
+        <div className="form-group">
+          <div className="form-field">
+            <label className="form-label">Release Date</label>
+            <input
+              type="date"
+              name="release"
+              onChange={handleChange}
+              value={values.release || ""}
+              className="form-input"
+            />
+            {errors.release && <pre>{errors.release}</pre>}
+          </div>
+          <div className="form-field">
+            <label className="form-label">Show Duration</label>
+            <select
+              name="showDuration"
+              onChange={(e) => {
+                setValues({ ...values, showDuration: e.target.value });
+              }}
+            >
+              <option value={7}>1 week</option>
+              <option value={14}>2 weeks</option>
+              <option value={21}>3 weeks</option>
+              <option value={30}>1 month</option>
+            </select>
+            {errors.showDuration && <pre>{errors.showDuration}</pre>}
+          </div>
         </div>
-        <div className="form-field">
-          <label className="form-label">cinema</label>
-          <select
-            name="cinema"
-            onChange={(e) => {
-              setValues({ ...values, cinema: e.target.value });
-            }}
-          >
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-          </select>
-          {errors.cinema && <pre>{errors.cinema}</pre>}
-        </div>
-        <div className="form-field">
-          <label className="form-label">movieDuration</label>
-          <input
-            type="text"
-            name="movieDuration"
-            onChange={handleChange}
-            className="form-input"
-            value={values.movieDuration || ""}
-          />
-          {errors.movieDuration && <pre>{errors.movieDuration}</pre>}
-        </div>
-        <div className="form-field">
-          <label className="form-label">release</label>
-          <input
-            type="text"
-            name="release"
-            onChange={handleChange}
-            value={values.release || ""}
-            className="form-input"
-          />
-          {errors.release && <pre>{errors.release}</pre>}
-        </div>
-        <div className="form-field">
-          <label className="form-label">showDuration</label>
-          <select
-            name="showDuration"
-            onChange={(e) => {
-              setValues({ ...values, showDuration: e.target.value });
-            }}
-          >
-            <option value={7}>1 week</option>
-            <option value={14}>2 weeks</option>
-            <option value={21}>3 weeks</option>
-            <option value={30}>1 month</option>
-          </select>
-          {errors.showDuration && <pre>{errors.showDuration}</pre>}
-        </div>
-        <div className="form-field">
-          <label className="form-label">Image:</label>
-          <input
-            type="file"
-            name="imageURL"
-            accept="image/*"
-            onChange={fileHandler}
-          />
-          <img src={values.imageURL || image} alt="cover" />
+
+        <div className="form-group">
+          <div className="form-field">
+            <label className="form-label">Image:</label>
+            <input
+              type="file"
+              name="imageURL"
+              accept="image/*"
+              onChange={fileHandler}
+            />
+          </div>
+          <img src={values.imageURL || image} alt="cover" height="200px" />
           {errors.imageURL && <pre>{errors.imageURL}</pre>}
         </div>
         <div className="form-field">

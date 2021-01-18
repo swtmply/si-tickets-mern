@@ -9,12 +9,30 @@ const Users = () => {
 
   return (
     <Dashboard>
-      <h2>Users Page</h2>
+      <div className="dashboard-title">
+        <h2>Users Page</h2>
+      </div>
 
-      <button onClick={() => setComponent(0)}>Users List</button>
-      <button onClick={() => setComponent(1)}>Add New User</button>
+      <div className="dashboard-button">
+        <div className="buttons">
+          <button
+            className={component === 0 ? "primary" : "outline-primary"}
+            onClick={() => setComponent(0)}
+          >
+            Users List
+          </button>
+          <button
+            className={component === 1 ? "primary" : "outline-primary"}
+            onClick={() => setComponent(1)}
+          >
+            Add New User
+          </button>
+        </div>
+      </div>
 
-      {component ? <UserForm /> : <UserTable />}
+      <div className="dashboard-component">
+        {component ? <UserForm /> : <UserTable />}
+      </div>
     </Dashboard>
   );
 };

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // pages
 import Home from "./pages/Home";
+import Movies from "./pages/Movies";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -20,11 +21,14 @@ import UserCreateForm from "./components/forms/UserCreateForm";
 
 const App = () => {
   return (
+    // using react-router-dom router and route component
+    // we have the ability to change routes using components
     <Router>
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/register" component={Register} />
         <UserRoute exact path="/home" component={Home} />
+        <UserRoute exact path="/movies" component={Movies} />
         <UserRoute exact path="/movie/:id" component={Movie} />
         <AdminRoute exact path="/dashboard" component={Dashboard} />
         <AdminRoute

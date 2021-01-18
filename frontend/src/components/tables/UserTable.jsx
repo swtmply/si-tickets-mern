@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const UserTable = () => {
+const UserTable = ({ setComponent }) => {
   const { data, isLoading, error } = useQuery("contents", async () => {
     return await axios.get(`/api/users`).then((res) => res.data);
   });
@@ -15,59 +15,58 @@ const UserTable = () => {
   return (
     <div className="table">
       <div className="row">
-        <div className="columnn">
-          <h1>Name</h1>
+        <div className="column">
+          <h3>Name</h3>
         </div>
-        <div className="columnn">
-          <h1>Username</h1>
+        <div className="column">
+          <h3>Username</h3>
         </div>
-        <div className="columnn">
-          <h1>Email</h1>
+        <div className="column">
+          <h3>Email</h3>
         </div>
-        <div className="columnn">
-          <h1>Contact</h1>
+        <div className="column">
+          <h3>Contact</h3>
         </div>
-        <div className="columnn">
-          <h1>Role</h1>
+        <div className="column">
+          <h3>Role</h3>
         </div>
-        <div className="columnn">
-          <h1>Action</h1>
+        <div className="column">
+          <h3>Action</h3>
         </div>
       </div>
 
-      <div className="row">
-        {data.map((user, index) => (
-          <div key={index}>
-            <div className="column">
-              <p>{user.name}</p>
-            </div>
-            <div className="column">
-              <p>{user.username}</p>
-            </div>
-            <div className="column">
-              <p>{user.email}</p>
-            </div>
-            <div className="column">
-              <p>{user.contact}</p>
-            </div>
-            <div className="column">
-              <p>{user.role}</p>
-            </div>
-            <div className="column">
-              <Link to={`/dashboard/user/${user._id}`}>
-                <button>edit</button>
-              </Link>
-              <button
-                onClick={async () => {
-                  await axios.delete(`/api/users/${user._id}/delete`);
-                }}
-              >
-                delete
-              </button>
-            </div>
+      {data.map((user, index) => (
+        <div key={index} className="row">
+          <div className="column">
+            <p>{user.name}</p>
           </div>
-        ))}
-      </div>
+          <div className="column">
+            <p>{user.username}</p>
+          </div>
+          <div className="column">
+            <p>{user.email && user.email.substring(0, 10) + "..."}</p>
+          </div>
+          <div className="column">
+            <p>{user.contact}</p>
+          </div>
+          <div className="column">
+            <p>{user.role}</p>
+          </div>
+          <div className="column">
+            <Link to={`/dashboard/user/${user._id}`}>
+              <button className="primary">edit</button>
+            </Link>
+            <button
+              className="outline-primary"
+              onClick={async () => {
+                await axios.delete(`/api/users/${user._id}/delete`);
+              }}
+            >
+              delete
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 
+// create schema for ticket
 const ticketSchema = new Schema(
   {
     movie: String,
@@ -10,4 +11,5 @@ const ticketSchema = new Schema(
   { timestamps: true }
 );
 
+// export schema as mongoose model
 export default model("Ticket", ticketSchema);
