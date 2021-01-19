@@ -191,11 +191,7 @@ const MovieForm = () => {
           {errors.imageURL && <pre>{errors.imageURL}</pre>}
         </div>
         <div className="form-field">
-          <button
-            className="primary createBtn"
-            disabled={isSubmitting}
-            type="submit"
-          >
+          <button className="primary createBtn" type="submit">
             Submit
           </button>
         </div>

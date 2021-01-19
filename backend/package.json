@@ -4,6 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "cd ../frontend && npm run build",
+    "install-client": "cd ../frontend && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "node -r esm server.js",
     "dev": "nodemon -r esm server.js"
   },
   "dependencies": {

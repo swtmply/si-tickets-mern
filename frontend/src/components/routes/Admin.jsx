@@ -22,7 +22,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
         if (data.role === "admin") {
           return <Component {...props} />;
         } else {
-          return <Redirect to="/" />;
+          return <Redirect to="/home" />;
         }
       }}
     />

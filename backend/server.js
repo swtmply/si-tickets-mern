@@ -22,6 +22,10 @@ app.use("/api/users", usersRoute);
 app.use("/api/movies", moviesRoute);
 app.use("/api/tickets", ticketsRoute);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+}
+
 // database connection
 mongoose.connect(
   // database link

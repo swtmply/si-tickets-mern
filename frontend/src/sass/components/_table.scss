@@ -29,6 +29,24 @@
     }
   }
 
-  .editBtn {
+  .search {
+    height: 5vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    input {
+      background: none;
+      border: none;
+      outline: none;
+
+      width: 20rem;
+
+      padding: 1rem;
+      color: black;
+
+      background-color: #e5e5e5;
+    }
   }
 }

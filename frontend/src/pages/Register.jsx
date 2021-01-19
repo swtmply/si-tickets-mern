@@ -18,7 +18,7 @@ const Register = () => {
         .post("/api/users/create", values)
         .then((res) => res.data);
 
-      if (response) history.push("/home");
+      if (response) history.push("/");
     } catch (error) {
       setErrors(error.response.data);
     }
