@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import moment from "moment";
@@ -8,6 +8,8 @@ const MovieTable = () => {
   const { data, isLoading, error } = useQuery("contents", async () => {
     return await axios.get(`/api/movies`).then((res) => res.data);
   });
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -24,6 +26,17 @@ const MovieTable = () => {
 
   return (
     <div className="table">
+
+      <div className="search">
+        <input 
+          type="text" 
+          placeholder="Search title..." 
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
+      </div>
+
       <div className="row">
         <div className="column">
           <h3>Title</h3>
@@ -45,7 +58,13 @@ const MovieTable = () => {
         </div>
       </div>
 
-      {data.map((movie, index) => (
+      {data.filter((movie)=> {
+        if (searchTerm == "") {
+          return movie;
+        } else if (movie.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return movie;
+        }
+      }).map((movie, index) => (
         <div key={index} className="row">
           <div className="column">
             <p>{movie.title}</p>

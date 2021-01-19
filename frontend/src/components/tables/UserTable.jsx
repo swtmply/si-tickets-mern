@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -8,12 +8,25 @@ const UserTable = ({ setComponent }) => {
     return await axios.get(`/api/users`).then((res) => res.data);
   });
 
+  const [searchTerm, setSearchTerm] = useState('');
+
   if (isLoading) return <div>Loading...</div>;
 
   if (error) return <div>Error fetching data</div>;
 
   return (
     <div className="table">
+
+      <div className="search">
+        <input 
+          type="text" 
+          placeholder="Search name..." 
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
+      </div>
+
       <div className="row">
         <div className="column">
           <h3>Name</h3>
@@ -35,7 +48,13 @@ const UserTable = ({ setComponent }) => {
         </div>
       </div>
 
-      {data.map((user, index) => (
+      {data.filter((user)=> {
+        if (searchTerm == "") {
+          return user;
+        } else if (user.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return user;
+        }
+      }).map((user, index) => (
         <div key={index} className="row">
           <div className="column">
             <p>{user.name}</p>
