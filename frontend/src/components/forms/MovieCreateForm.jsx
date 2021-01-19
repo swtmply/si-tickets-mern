@@ -127,13 +127,13 @@ const MovieForm = () => {
             <select
               name="cinema"
               onChange={(e) => {
-                setValues({ ...values, cinema: e.target.value });
+                setValues({ ...values, cinema: Number(e.target.value) });
               }}
             >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </select>
             {errors.cinema && <pre>{errors.cinema}</pre>}
           </div>
@@ -156,7 +156,6 @@ const MovieForm = () => {
               type="date"
               name="release"
               onChange={handleChange}
-              value={values.release || ""}
               className="form-input"
             />
             {errors.release && <pre>{errors.release}</pre>}
