@@ -8,6 +8,7 @@ import { validateEditUser } from "../../utils/FormValidation";
 
 import Dashboard from "../../pages/Dashboard";
 
+// user edit form
 const UserCreateForm = ({ match }) => {
   const { id } = match.params;
   const {
@@ -19,9 +20,12 @@ const UserCreateForm = ({ match }) => {
     handleSubmit,
     isSubmitting,
   } = useForm(register, validateEditUser);
+
+  //useHistory for pages
   const history = useHistory();
 
   const { data, isLoading, error } = useQuery("info", async () => {
+    // using axios to access the backend
     return await axios.get(`/api/users/${id}`).then((res) => res.data);
   });
 

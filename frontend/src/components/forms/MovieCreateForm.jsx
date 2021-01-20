@@ -5,8 +5,11 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { validateMovie } from "../../utils/FormValidation";
 
+//movie create form 
 const MovieForm = () => {
   const [image, setImagePreview] = useState();
+
+   // useHistory of pages
   const history = useHistory();
 
   const {
@@ -29,16 +32,19 @@ const MovieForm = () => {
     };
   };
 
+  // submit function of the form
   async function submitForm(values) {
     try {
       // upload photo
 
+      // using axios to access the backend
       const imageURL = await axios
         .post("/api/movies/upload", { image })
         .then((res) => res.data);
 
       values.imageURL = imageURL.url;
 
+      // using axios to access the backend
       await axios.post("/api/movies/create", values).then((res) => res.data);
 
       history.push("/dashboard");

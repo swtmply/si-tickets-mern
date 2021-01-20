@@ -5,11 +5,15 @@ import { useHistory } from "react-router-dom";
 
 import useUser from "../../hooks/useUser";
 
+// ticket table component
 const TicketTable = () => {
   const { data: user } = useUser();
+  
+  // useHistory for pages
   const history = useHistory();
 
   const { data, error, isLoading } = useQuery("tickets", async () => {
+    // using axios to access the backend
     return await axios
       .get(`/api/users/${user._id}/tickets`)
       .then((res) => res.data);

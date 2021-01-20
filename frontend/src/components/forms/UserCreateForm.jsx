@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { validateRegister } from "../../utils/FormValidation";
 
+// user create form
 const UserCreateForm = () => {
   const {
     errors,
@@ -13,10 +14,13 @@ const UserCreateForm = () => {
     handleSubmit,
     isSubmitting,
   } = useForm(register, validateRegister);
+
+  //useHistory for pages
   const history = useHistory();
 
   async function register(values) {
     try {
+      // using axios to access the backend
       const response = await axios
         .post("/api/users/create", values)
         .then((res) => res.data);

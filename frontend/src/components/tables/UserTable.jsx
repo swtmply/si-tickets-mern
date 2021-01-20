@@ -3,11 +3,17 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 
+// user table component
 const UserTable = ({ setComponent }) => {
   const { data, isLoading, error } = useQuery("contents", async () => {
+    // using axios to access the backend
     return await axios.get(`/api/users`).then((res) => res.data);
   });
+
+  // useHistory for pages
   const history = useHistory();
+
+  // search state
   const [searchTerm, setSearchTerm] = useState("");
 
   if (isLoading) return <div>Loading...</div>;

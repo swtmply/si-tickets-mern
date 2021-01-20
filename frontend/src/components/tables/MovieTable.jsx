@@ -4,11 +4,17 @@ import axios from "axios";
 import moment from "moment";
 import { Link, useHistory } from "react-router-dom";
 
+// movie table component
 const MovieTable = () => {
   const { data, isLoading, error } = useQuery("contents", async () => {
+    // using axios to access the backend
     return await axios.get(`/api/movies`).then((res) => res.data);
   });
+
+  // useHistory for pages
   const history = useHistory();
+
+  // search state
   const [searchTerm, setSearchTerm] = useState("");
 
   if (isLoading) return <div>Loading...</div>;

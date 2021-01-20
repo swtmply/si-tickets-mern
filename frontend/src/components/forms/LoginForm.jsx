@@ -5,10 +5,12 @@ import { useHistory, Link } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { validateLogin } from "../../utils/FormValidation";
 
+// error style for catch error
 const ERROR_STYLE = {
   border: "2px solid #db5050",
 };
 
+// Login form
 const LoginForm = () => {
   const {
     isSubmitting,
@@ -17,10 +19,14 @@ const LoginForm = () => {
     errors,
     setErrors,
   } = useForm(userLogin, validateLogin);
+
+  // useHistory of pages
   const history = useHistory();
 
+  // submit function of the form
   async function userLogin(values) {
     try {
+      // using axios to access the backend
       const data = await axios
         .post("/api/users/login", values)
         .then((res) => res.data);

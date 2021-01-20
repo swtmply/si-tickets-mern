@@ -8,12 +8,18 @@ import { validateMovie } from "../../utils/FormValidation";
 
 import Dashboard from "../../pages/Dashboard";
 
+// movie edit form
 const MovieForm = ({ match }) => {
   const { id } = match.params;
+
+  //state for image
   const [image, setImagePreview] = useState();
+
+  //useHistory for pages
   const history = useHistory();
 
   const { data, isLoading, error } = useQuery("info", async () => {
+    // using axios to access the backend
     return await axios.get(`/api/movies/${id}`).then((res) => res.data);
   });
 
@@ -46,8 +52,10 @@ const MovieForm = ({ match }) => {
     };
   };
 
+  // submit function of the form
   async function submitForm(values) {
     try {
+      // using axios to access the backend
       const response = await axios
         .put(`/api/movies/${data._id}/update`, values)
         .then((res) => res.data);
